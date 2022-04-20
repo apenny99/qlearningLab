@@ -2,6 +2,7 @@ package com.technobium.rl;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -251,13 +252,21 @@ public class QLearning {
     }
 
     void printQ() {
-        System.out.println("Q matrix");
+        String tmp = "Qmatrix \n";
         for (int i = 0; i < Q.length; i++) {
-            System.out.print("From state " + i + ":  ");
+            tmp += "From state" + i + ": ";
             for (int j = 0; j < Q[i].length; j++) {
-                System.out.printf("%6.2f ", (Q[i][j]));
+                tmp += String.format("%6.2f ", (Q[i][j]));
             }
-            System.out.println();
+            tmp.concat("\n");
+            try {
+                FileWriter W = new FileWriter("src/MatrixOut.txt");
+                W.write(tmp);
+                W.close();
+            } catch (IOException e) {
+                System.out.println("Couldnt put in file");
+                e.printStackTrace();
+            }
         }
     }
 }

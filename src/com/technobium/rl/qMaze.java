@@ -52,8 +52,5 @@ public class qMaze {
 
     }
 
-    public static void main(String[] args) throws IOException {
-        qMaze m = new qMaze();
-        m.makeMaze();
-    }
+
 }
