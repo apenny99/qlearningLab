@@ -1,3 +1,12 @@
+/**
+ * QLearning
+ * a program that uses q learning to navigate a maze
+ * Author: August Penny
+ * Collaborator(s): Mareks
+ * Collaboration: Talked about what needs to change in this class to make it take in and print out the solution
+ * Date: 4/20/22
+ **/
+
 package com.technobium.rl;
 
 import java.io.File;
@@ -13,8 +22,8 @@ public class QLearning {
     private final double alpha = 0.1; // Learning rate
     private final double gamma = 0.9; // Eagerness - 0 looks in the near future, 1 looks in the distant future
 
-    private final int mazeWidth = 3;
-    private final int mazeHeight = 3;
+    private final int mazeWidth = 5;
+    private final int mazeHeight = 5;
     private final int statesCount = mazeHeight * mazeWidth;
 
     private final int reward = 100;
@@ -36,10 +45,11 @@ public class QLearning {
     }
 
     public void init() throws IOException {
-        File file = new File("src/maze.txt");
+
 
         m = new qMaze();
         m.makeMaze();
+        File file = new File("src/maze.txt");
 
         R = new int[statesCount][statesCount];
         Q = new double[statesCount][statesCount];
@@ -258,7 +268,7 @@ public class QLearning {
             for (int j = 0; j < Q[i].length; j++) {
                 tmp += String.format("%6.2f ", (Q[i][j]));
             }
-            tmp.concat("\n");
+            tmp+="\n";
             try {
                 FileWriter W = new FileWriter("src/MatrixOut.txt");
                 W.write(tmp);
